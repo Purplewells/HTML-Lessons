@@ -1,0 +1,146 @@
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --text-color: #2b2d42;
+    --light-color: #f8f9fa;
+    --success-color: #4caf50;
+}
+
+body {
+    background-color: #f5f7ff;
+    color: var(--text-color);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.registration-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome Section Styles */
+.welcome-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 3rem 1.5rem;
+}
+
+.welcome-content {
+    position: sticky;
+    top: 2rem;
+}
+
+.avatar-container {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.steps-list {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.step-item i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Form Styles */
+.form-control,
+.form-select {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Password Requirements */
+.requirements-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    font-size: 0.875rem;
+}
+
+.requirements-list li {
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.requirements-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0.5rem;
+}
+
+.requirements-list li.valid {
+    color: var(--success-color);
+}
+
+.requirements-list li.valid::before {
+    content: '✓';
+    color: var(--success-color);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .welcome-section {
+        padding: 2rem 1rem;
+    }
+
+    .avatar-container {
+        font-size: 4rem;
+    }
+
+    .card-body {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
