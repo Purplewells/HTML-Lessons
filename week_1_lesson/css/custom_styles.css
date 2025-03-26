@@ -1,0 +1,417 @@
+/* Global Styles */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #2c3e50;
+    --light-bg: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-color);
+    padding-top: 76px;
+    /* Account for fixed navbar */
+}
+
+/* Hero Banner */
+.hero-banner {
+    position: relative;
+    height: 100vh;
+    background-image: url('path-to-your-image.jpg');
+    /* Add your background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    margin-top: -76px;
+    /* Offset the padding-top from body */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Feature Cards */
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+}
+
+/* Page Header (for Contact page) */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 100px 0 50px;
+    margin-bottom: 50px;
+    margin-top: -76px;
+}
+
+/* Contact Form Styling */
+.contact-card {
+    border: none;
+    border-radius: 15px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 70vh;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .feature-card {
+        margin-bottom: 20px;
+    }
+
+    .page-header {
+        padding: 80px 0 40px;
+    }
+}
+
+/* Modal Styles */
+.modal-content {
+    border: none;
+    border-radius: 15px;
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 15px 15px 0 0;
+    padding: 1.5rem;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.summary-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.summary-title {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.comments-box {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+}
+
+.modal-footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid #eee;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* Mobile Responsiveness for Modal */
+@media (max-width: 768px) {
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .summary-section {
+        margin-bottom: 1rem;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .modal-footer button {
+        width: 100%;
+    }
+}
+
+/* Add these to your existing styles.css */
+
+.summary-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.summary-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.summary-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.summary-value {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.comments-box {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+}
+
+.rating-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+}
+
+.rating-badge.good {
+    background-color: #28a745;
+}
+
+.rating-badge.average {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.rating-badge.poor {
+    background-color: #dc3545;
+}
+
+/* Print Styles */
+@media print {
+    .btn {
+        display: none;
+    }
+
+    .card {
+        border: none;
+        box-shadow: none;
+    }
+
+    .card-header {
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .summary-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .summary-value {
+        font-size: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Summary Page Styles */
+
+/* Container Styles */
+.summary-container {
+    max-width: 800px;
+    margin: 0 auto;
+    /* Center the container */
+}
+
+/* Section Styles */
+.summary-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #dee2e6;
+    /* Subtle section separator */
+}
+
+/* Remove border from last section */
+.summary-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Value Display Styles */
+.summary-value {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    /* Light gray background */
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* Comments Box Styles */
+.comments-box {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+    /* Preserve line breaks in comments */
+}
+
+/* Rating Badge Styles */
+.rating-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+}
+
+/* Rating-specific colors */
+.rating-badge.good {
+    background-color: #28a745;
+    /* Green for good ratings */
+}
+
+.rating-badge.average {
+    background-color: #ffc107;
+    /* Yellow for average ratings */
+    color: #000;
+    /* Dark text for better contrast */
+}
+
+.rating-badge.poor {
+    background-color: #dc3545;
+    /* Red for poor ratings */
+}
+
+/* Print-specific Styles */
+@media print {
+
+    /* Hide buttons when printing */
+    .btn {
+        display: none;
+    }
+
+    /* Remove card styling for cleaner print */
+    .card {
+        border: none;
+        box-shadow: none;
+    }
+
+    /* Ensure header is black in print */
+    .card-header {
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+
+    /* Adjust spacing for mobile */
+    .summary-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    /* Smaller text on mobile */
+    .summary-value {
+        font-size: 1rem;
+    }
+
+    /* Full-width buttons on mobile */
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}

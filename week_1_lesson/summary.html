@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Feedback Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- External Dependencies -->
+    <!-- Bootstrap CSS for responsive design and pre-built components -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for the summary page -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <!-- Main Container -->
+    <!-- Uses Bootstrap's container class for responsive padding and max-width -->
+    <div class="container py-5">
+        <!-- Card Component -->
+        <!-- Bootstrap card component for structured content presentation -->
+        <div class="card shadow-sm">
+            <!-- Card Header -->
+            <div class="card-header bg-primary text-white">
+                <h2 class="text-center mb-0">Feedback Submission Summary</h2>
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body">
+                <!-- Dynamic Content Container -->
+                <!-- This div will be populated with either the summary or no-data template -->
+                <div id="summaryContent" class="summary-container">
+                    <!-- Content dynamically inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Definitions -->
+    <!-- HTML templates are used to store markup structures that will be cloned and populated with data -->
+
+    <!-- No Data Template -->
+    <!-- Displayed when no feedback data is found in localStorage -->
+    <template id="noDataTemplate">
+        <div class="alert alert-danger">
+            No feedback data found. Please submit the feedback form.
+        </div>
+        <div class="text-center mt-3">
+            <a href="feedbackform.html" class="btn btn-primary">Go to Feedback Form</a>
+        </div>
+    </template>
+
+    <!-- Summary Content Template -->
+    <!-- Main template for displaying feedback data -->
+    <template id="summaryTemplate">
+        <!-- Personal Information Section -->
+        <div class="summary-section">
+            <h3 class="section-title">Personal Information</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Name:</strong></p>
+                    <p class="summary-value" id="summaryName"></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Email:</strong></p>
+                    <p class="summary-value" id="summaryEmail"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Evaluation Section -->
+        <div class="summary-section">
+            <h3 class="section-title">Product Evaluation</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Selected Product:</strong></p>
+                    <p class="summary-value" id="summaryProduct"></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Rating:</strong></p>
+                    <p class="summary-value">
+                        <span id="summaryRating" class="rating-badge"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Feedback Section -->
+        <div class="summary-section">
+            <h3 class="section-title">Additional Feedback</h3>
+            <p><strong>Comments:</strong></p>
+            <div class="comments-box" id="summaryComments"></div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="text-center mt-4">
+            <a href="feedbackform.html" class="btn btn-secondary me-2">Submit Another Response</a>
+            <button onclick="window.print()" class="btn btn-primary">Print Summary</button>
+            <button onclick="clearFeedback()" class="btn btn-danger ms-2">Clear Data</button>
+        </div>
+    </template>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        /**
+         * Main initialization function that runs when the DOM is fully loaded
+         * Handles the display of feedback data and template selection
+         */
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get reference to the main content container
+            const summaryContent = document.getElementById('summaryContent');
+
+            // Attempt to retrieve feedback data from localStorage
+            const feedbackData = localStorage.getItem('feedbackData');
+
+            // Handle case when no feedback data exists
+            if (!feedbackData) {
+                const noDataTemplate = document.getElementById('noDataTemplate');
+                summaryContent.innerHTML = noDataTemplate.innerHTML;
+                return;
+            }
+
+            // Display summary template when data exists
+            const summaryTemplate = document.getElementById('summaryTemplate');
+            summaryContent.innerHTML = summaryTemplate.innerHTML;
+
+            // Parse the stored JSON data
+            const data = JSON.parse(feedbackData);
+
+            // Format product name (convert product_name to Product Name)
+            const productName = data.product
+                .split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+
+            // Populate all summary fields with the retrieved data
+            populateSummaryFields(data, productName);
+        });
+
+        /**
+         * Populates all summary fields with the provided feedback data
+         * @param {Object} data - The feedback data object
+         * @param {string} productName - The formatted product name
+         */
+        function populateSummaryFields(data, productName) {
+            // Set basic text content
+            document.getElementById('summaryName').textContent = data.name;
+            document.getElementById('summaryEmail').textContent = data.email;
+            document.getElementById('summaryProduct').textContent = productName;
+
+            // Set rating with proper formatting and styling
+            const ratingSpan = document.getElementById('summaryRating');
+            ratingSpan.textContent = data.rating.charAt(0).toUpperCase() + data.rating.slice(1);
+            ratingSpan.className = `rating-badge ${data.rating}`;
+
+            // Set comments (with fallback for empty comments)
+            document.getElementById('summaryComments').textContent =
+                data.comments || 'No comments provided';
+        }
+
+        /**
+         * Clears the feedback data from localStorage after user confirmation
+         * Reloads the page to show the no-data state
+         */
+        function clearFeedback() {
+            if (confirm('Are you sure you want to clear the feedback data?')) {
+                localStorage.removeItem('feedbackData');
+                window.location.reload();
+            }
+        }
+    </script>
+</body>
+
+</html>

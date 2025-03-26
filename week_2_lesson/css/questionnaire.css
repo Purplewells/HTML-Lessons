@@ -1,0 +1,201 @@
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --success-color: #2ecc71;
+    --text-color: #2b2d42;
+    --light-bg: #f8f9fa;
+    --border-color: #e9ecef;
+}
+
+body {
+    background-color: #f5f7ff;
+    color: var(--text-color);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.questionnaire-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress Header */
+.progress-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 2rem 1.5rem;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%);
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.step-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.step.active .step-icon {
+    background: white;
+    color: var(--primary-color);
+}
+
+.step-label {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* Form Stages */
+.form-stage {
+    display: none;
+}
+
+.form-stage.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stage-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.stage-description {
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+/* Custom Form Elements */
+.work-style-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.custom-radio label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-radio input:checked+label {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.skills-grid,
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+}
+
+.btn-outline-primary {
+    border-width: 2px;
+    width: 100%;
+}
+
+/* Range Sliders */
+.range-slider {
+    position: relative;
+    padding: 1rem 0;
+}
+
+.range-value {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+/* Navigation Buttons */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .progress-steps {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .step-label {
+        font-size: 0.75rem;
+    }
+
+    .work-style-options {
+        grid-template-columns: 1fr;
+    }
+}
